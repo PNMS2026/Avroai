@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AvroAI Deployment Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .test-item {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #ccc;
+            background: #f9f9f9;
+        }
+        .test-item.success {
+            border-left-color: #10b981;
+            background: #f0fdf4;
+        }
+        .test-item.error {
+            border-left-color: #ef4444;
+            background: #fef2f2;
+        }
+        .test-item.warning {
+            border-left-color: #f59e0b;
+            background: #fffbeb;
+        }
+        .test-item.loading {
+            border-left-color: #3b82f6;
+            background: #eff6ff;
+        }
+        .status {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .details {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔧 AvroAI Deployment Test</h1>
+        <p>This tool will test your frontend and backend deployment.</p>
+        
+        <button onclick="runTests()">Run All Tests</button>
+        
+        <div id="test1" class="test-item" style="display:none;">
+            <div class="status">Test 1: Frontend Configuration</div>
+            <div id="test1-details" class="details"></div>
+        </div>
+        
+        <div id="test2" class="test-item" style="display:none;">
+            <div class="status">Test 2: Backend API Connection</div>
+            <div id="test2-details" class="details"></div>
+        </div>
+        
+        <div id="test3" class="test-item" style="display:none;">
+            <div class="status">Test 3: Database Connection</div>
+            <div id="test3-details" class="details"></div>
+        </div>
+        
+        <div id="test4" class="test-item" style="display:none;">
+            <div class="status">Test 4: CORS Configuration</div>
+            <div id="test4-details" class="details"></div>
+        </div>
+        
+        <div id="summary" style="margin-top: 30px; display:none;">
+            <h2>Summary</h2>
+            <div id="summary-content"></div>
+        </div>
+    </div>
+
+    <script>
+        const BACKEND_URL = 'https://avroai.onrender.com';
+        
+        async function runTests() {
+            document.getElementById('summary').style.display = 'none';
+            
+            // Test 1: Frontend Config
+            await test1();
+            
+            // Test 2: Backend Connection
+            await test2();
+            
+            // Test 3: Database
+            await test3();
+            
+            // Test 4: CORS
+            await test4();
+            
+            // Show summary
+            showSummary();
+        }
+        
+        async function test1() {
+            const el = document.getElementById('test1');
+            const details = document.getElementById('test1-details');
+            el.style.display = 'block';
+            el.className = 'test-item loading';
+            details.innerHTML = '<span class="spinner"></span> Testing...';
+            
+            try {
+                const hostname = window.location.hostname;
+                const isLocal = hostname === 'localhost' || hostname === '127.0.0.1';
+                const expectedAPI = isLocal ? 'http://localhost:3000/api' : 'https://avroai.onrender.com/api';
+                
+                details.innerHTML = `
+Environment: ${isLocal ? 'LOCAL' : 'PRODUCTION'}<br>
+Hostname: ${hostname}<br>
+Expected API URL: ${expectedAPI}
+                `;
+                
+                el.className = 'test-item success';
+            } catch (error) {
+                details.innerHTML = `Error: ${error.message}`;
+                el.className = 'test-item error';
+            }
+        }
+        
+        async function test2() {
+            const el = document.getElementById('test2');
+            const details = document.getElementById('test2-details');
+            el.style.display = 'block';
+            el.className = 'test-item loading';
+            details.innerHTML = '<span class="spinner"></span> Connecting to backend...';
+            
+            try {
+                const startTime = Date.now();
+                const response = await fetch(`${BACKEND_URL}/api/tools`);
+                const endTime = Date.now();
+                const responseTime = endTime - startTime;
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    details.innerHTML = `
+✅ Backend is ONLINE!<br>
+URL: ${BACKEND_URL}/api/tools<br>
+Status: ${response.status} ${response.statusText}<br>
+Response Time: ${responseTime}ms<br>
+Tools Found: ${data.length}
+                    `;
+                    el.className = 'test-item success';
+                } else {
+                    details.innerHTML = `
+❌ Backend returned error<br>
+Status: ${response.status} ${response.statusText}<br>
+URL: ${BACKEND_URL}/api/tools
+                    `;
+                    el.className = 'test-item error';
+                }
+            } catch (error) {
+                details.innerHTML = `
+❌ Cannot connect to backend!<br>
+Error: ${error.message}<br>
+URL: ${BACKEND_URL}/api/tools<br><br>
+Possible causes:<br>
+1. Backend not deployed to Render<br>
+2. Backend is sleeping (wait 30 seconds and retry)<br>
+3. MongoDB connection failed<br>
+4. Environment variables not set
+                `;
+                el.className = 'test-item error';
+            }
+        }
+        
+        async function test3() {
+            const el = document.getElementById('test3');
+            const details = document.getElementById('test3-details');
+            el.style.display = 'block';
+            el.className = 'test-item loading';
+            details.innerHTML = '<span class="spinner"></span> Testing database connection...';
+            
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/tools`);
+                const data = await response.json();
+                
+                if (data && data.length > 0) {
+                    details.innerHTML = `
+✅ Database connection working!<br>
+Tools in database: ${data.length}<br>
+Sample tool: ${data[0].name}<br>
+Categories: ${[...new Set(data.map(t => t.category))].length}
+                    `;
+                    el.className = 'test-item success';
+                } else {
+                    details.innerHTML = `
+⚠️ Database connected but empty<br>
+You may need to run the seed script:<br>
+<code>node seed-data.js</code>
+                    `;
+                    el.className = 'test-item warning';
+                }
+            } catch (error) {
+                details.innerHTML = `
+❌ Database connection failed<br>
+Error: ${error.message}<br><br>
+Check:<br>
+1. MongoDB Atlas Network Access allows 0.0.0.0/0<br>
+2. MONGODB_URI environment variable is set in Render<br>
+3. MongoDB Atlas cluster is running
+                `;
+                el.className = 'test-item error';
+            }
+        }
+        
+        async function test4() {
+            const el = document.getElementById('test4');
+            const details = document.getElementById('test4-details');
+            el.style.display = 'block';
+            el.className = 'test-item loading';
+            details.innerHTML = '<span class="spinner"></span> Testing CORS...';
+            
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/categories`);
+                
+                if (response.ok) {
+                    details.innerHTML = `
+✅ CORS is configured correctly!<br>
+Frontend can access backend API<br>
+Origin: ${window.location.origin}<br>
+Backend: ${BACKEND_URL}
+                    `;
+                    el.className = 'test-item success';
+                } else {
+                    details.innerHTML = `
+⚠️ CORS may have issues<br>
+Status: ${response.status}
+                    `;
+                    el.className = 'test-item warning';
+                }
+            } catch (error) {
+                if (error.message.includes('CORS')) {
+                    details.innerHTML = `
+❌ CORS Error!<br>
+Backend is not allowing requests from this origin<br>
+Check server.js CORS configuration
+                    `;
+                    el.className = 'test-item error';
+                } else {
+                    details.innerHTML = `
+Connection test: ${error.message}
+                    `;
+                    el.className = 'test-item warning';
+                }
+            }
+        }
+        
+        function showSummary() {
+            const summary = document.getElementById('summary');
+            const content = document.getElementById('summary-content');
+            
+            const test1Success = document.getElementById('test1').classList.contains('success');
+            const test2Success = document.getElementById('test2').classList.contains('success');
+            const test3Success = document.getElementById('test3').classList.contains('success');
+            const test4Success = document.getElementById('test4').classList.contains('success');
+            
+            const allSuccess = test1Success && test2Success && test3Success && test4Success;
+            
+            if (allSuccess) {
+                content.innerHTML = `
+<div class="test-item success">
+    <h3>🎉 All Tests Passed!</h3>
+    <p>Your deployment is working correctly. Tools should load on your website.</p>
+    <p><strong>Next steps:</strong></p>
+    <ul>
+        <li>Visit your main site and verify tools are loading</li>
+        <li>Test the search functionality</li>
+        <li>Test the category filter</li>
+        <li>Try the admin panel</li>
+    </ul>
+</div>
+                `;
+            } else {
+                let issues = [];
+                if (!test2Success) issues.push('Backend not responding (502 error)');
+                if (!test3Success) issues.push('Database connection issue');
+                if (!test4Success) issues.push('CORS configuration issue');
+                
+                content.innerHTML = `
+<div class="test-item error">
+    <h3>❌ Issues Detected</h3>
+    <p><strong>Problems found:</strong></p>
+    <ul>
+        ${issues.map(issue => `<li>${issue}</li>`).join('')}
+    </ul>
+    <p><strong>Action Required:</strong></p>
+    <ol>
+        <li>If backend not responding: Deploy to Render</li>
+        <li>If database issue: Check MongoDB Atlas Network Access</li>
+        <li>If CORS issue: Check server.js configuration</li>
+    </ol>
+</div>
+                `;
+            }
+            
+            summary.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+
