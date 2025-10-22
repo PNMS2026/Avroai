@@ -1,11 +1,11 @@
 // API Configuration
-// Change this to your Render backend URL after deployment
+// Change this to your Railway backend URL after deployment
 const API_CONFIG = {
     // Local development
     local: 'http://localhost:3000/api',
     
-    // Production (Render backend)
-    production: 'https://avroai.onrender.com/api',
+    // Production (Railway backend)
+    production: 'https://avroai-production.up.railway.app/api',
     
     // Auto-detect environment
     getBaseURL: function() {

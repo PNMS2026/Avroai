@@ -7,14 +7,15 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
-// Configure CORS to allow requests from Vercel frontend
+// Configure CORS to allow requests from Vercel frontend and Railway
 const corsOptions = {
   origin: [
     'http://localhost:3000',
     'http://localhost:5173',
     'https://avroai.vercel.app',
-    'https://avroai-*.vercel.app', // Allow preview deployments
-    /\.vercel\.app$/ // Allow all Vercel subdomains
+    'https://avroai-*.vercel.app', // Allow Vercel preview deployments
+    /\.vercel\.app$/, // Allow all Vercel subdomains
+    /\.railway\.app$/ // Allow Railway domain
   ],
   credentials: true,
   optionsSuccessStatus: 200

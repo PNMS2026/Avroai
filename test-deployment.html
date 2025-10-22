@@ -121,7 +121,7 @@
     </div>
 
     <script>
-        const BACKEND_URL = 'https://avroai.onrender.com';
+        const BACKEND_URL = 'https://avroai-production.up.railway.app';
         
         async function runTests() {
             document.getElementById('summary').style.display = 'none';
@@ -204,8 +204,8 @@ URL: ${BACKEND_URL}/api/tools
 Error: ${error.message}<br>
 URL: ${BACKEND_URL}/api/tools<br><br>
 Possible causes:<br>
-1. Backend not deployed to Render<br>
-2. Backend is sleeping (wait 30 seconds and retry)<br>
+1. Backend not deployed to Railway<br>
+2. Backend is still deploying (wait and retry)<br>
 3. MongoDB connection failed<br>
 4. Environment variables not set
                 `;
@@ -246,7 +246,7 @@ You may need to run the seed script:<br>
 Error: ${error.message}<br><br>
 Check:<br>
 1. MongoDB Atlas Network Access allows 0.0.0.0/0<br>
-2. MONGODB_URI environment variable is set in Render<br>
+2. MONGODB_URI environment variable is set in Railway<br>
 3. MongoDB Atlas cluster is running
                 `;
                 el.className = 'test-item error';
@@ -335,7 +335,7 @@ Connection test: ${error.message}
     </ul>
     <p><strong>Action Required:</strong></p>
     <ol>
-        <li>If backend not responding: Deploy to Render</li>
+        <li>If backend not responding: Deploy to Railway</li>
         <li>If database issue: Check MongoDB Atlas Network Access</li>
         <li>If CORS issue: Check server.js configuration</li>
     </ol>

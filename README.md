@@ -1,300 +1,194 @@
 # 🚀 AvroAI - AI Tools Directory
 
-A clean, fast, and responsive AI tools directory platform built with Node.js, Express, and MongoDB.
+A beautiful, modern web application to discover and explore AI tools from around the world.
 
-## 📋 Features
+## 📋 Tech Stack
 
-- **🏠 Home Page** - Browse all AI tools with search and category filtering
-- **📚 Categories Page** - Explore tools organized by categories
-- **🔍 Search Functionality** - Find tools by name or keyword
-- **🎨 Responsive Design** - Beautiful UI that works on all devices
-- **⚡ Fast & Lightweight** - Optimized for performance
-- **🔐 Admin Panel** - Private dashboard to manage tools and categories
-- **🎯 Direct Links** - "Try Now" buttons link directly to tool websites
+- **Frontend:** HTML, CSS, JavaScript (Vanilla)
+- **Backend:** Node.js + Express
+- **Database:** MongoDB Atlas
+- **Hosting:** 
+  - Backend: Railway
+  - Frontend: Vercel
 
-## 🛠️ Tech Stack
+## ✨ Features
 
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB with Mongoose
-- **Frontend**: HTML5, CSS3, Vanilla JavaScript
-- **Styling**: Custom CSS with modern design principles
+- 🔍 **Search Functionality** - Find AI tools by name or description
+- 📁 **Category Filtering** - Browse tools by category
+- ⚡ **Fast & Responsive** - Modern, mobile-friendly design
+- 🛠️ **Admin Panel** - Manage tools and categories
+- 🌐 **48+ AI Tools** - Curated collection of the best AI tools
 
-## 📁 Project Structure
-
-```
-avroai/
-├── models/
-│   ├── Tool.js              # Tool schema
-│   └── Category.js          # Category schema
-├── routes/
-│   ├── tools.js             # Tool API routes
-│   └── categories.js        # Category API routes
-├── public/
-│   ├── css/
-│   │   ├── style.css        # Main styles
-│   │   └── admin.css        # Admin panel styles
-│   ├── js/
-│   │   ├── main.js          # Home page logic
-│   │   ├── categories.js    # Categories page logic
-│   │   └── admin.js         # Admin panel logic
-│   ├── index.html           # Home page
-│   ├── categories.html      # Categories page
-│   ├── admin.html           # Admin panel
-│   ├── about.html           # About page
-│   └── contact.html         # Contact page
-├── server.js                # Express server
-├── package.json             # Dependencies
-└── README.md               # Documentation
-```
-
-## 🚀 Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- **Node.js** (v14 or higher)
-- **MongoDB** (v4.4 or higher)
-- **npm** or **yarn**
+- Node.js 18+ installed
+- MongoDB Atlas account
+- Railway account (for backend deployment)
+- Vercel account (for frontend deployment)
 
-### Installation
+### Local Development
 
-1. **Clone or download this project**
-
-```bash
-cd avroai
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/PNMS2026/Avroai.git
+   cd Avroai
+   ```
 
 2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-```bash
-npm install
+3. **Create `.env` file**
+   ```env
+   MONGODB_URI=your_mongodb_connection_string
+   PORT=3000
+   ```
+
+4. **Start the server**
+   ```bash
+   npm start
+   ```
+
+5. **Open in browser**
+   ```
+   http://localhost:3000
+   ```
+
+## 📦 Deployment
+
+### Complete deployment guide: [`DEPLOYMENT-GUIDE.md`](./DEPLOYMENT-GUIDE.md)
+
+**Quick steps:**
+
+1. **Deploy Backend to Railway**
+   - Connect GitHub repository
+   - Add environment variables (MONGODB_URI, PORT, NODE_VERSION)
+   - Generate public domain
+
+2. **Configure MongoDB Atlas**
+   - Add 0.0.0.0/0 to Network Access
+   - Allow connections from anywhere
+
+3. **Deploy Frontend to Vercel**
+   - Import GitHub repository
+   - Set output directory to `public`
+   - Deploy
+
+## 🔧 Environment Variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `MONGODB_URI` | MongoDB Atlas connection string | Yes |
+| `PORT` | Server port (default: 3000) | Yes |
+| `NODE_VERSION` | Node.js version (18) | Yes |
+
+## 📂 Project Structure
+
+```
+avroai/
+├── models/           # MongoDB models (Category, Tool)
+├── routes/           # API routes (tools, categories)
+├── public/           # Frontend files
+│   ├── css/         # Stylesheets
+│   ├── js/          # JavaScript files
+│   └── *.html       # HTML pages
+├── server.js        # Express server
+├── package.json     # Dependencies
+└── README.md        # This file
 ```
 
-3. **Set up environment variables**
+## 🌐 API Endpoints
 
-Create a `.env` file in the root directory:
+### Tools
+- `GET /api/tools` - Get all tools
+- `GET /api/tools?category=Chatbots` - Get tools by category
+- `GET /api/tools/search?q=chatgpt` - Search tools
+- `POST /api/tools` - Create new tool
+- `PUT /api/tools/:id` - Update tool
+- `DELETE /api/tools/:id` - Delete tool
 
-```env
-PORT=3000
-MONGODB_URI=mongodb://localhost:27017/avroai
-```
+### Categories
+- `GET /api/categories` - Get all categories
+- `POST /api/categories` - Create new category
+- `DELETE /api/categories/:id` - Delete category
 
-4. **Start MongoDB**
-
-Make sure MongoDB is running on your system:
-
-```bash
-# On macOS with Homebrew
-brew services start mongodb-community
-
-# On Windows
-net start MongoDB
-
-# On Linux
-sudo systemctl start mongod
-```
-
-5. **Run the application**
-
-```bash
-# Development mode (with auto-reload)
-npm run dev
-
-# Production mode
-npm start
-```
-
-6. **Open your browser**
-
-Navigate to: `http://localhost:3000`
-
-## 🎯 Usage
-
-### Frontend Pages
+## 🎨 Pages
 
 - **Home** (`/`) - Browse all AI tools
 - **Categories** (`/categories`) - View tools by category
-- **About** (`/about`) - Information about AvroAI
-- **Contact** (`/contact`) - Contact information
 - **Admin** (`/admin`) - Manage tools and categories
+- **About** (`/about`) - About the platform
+- **Contact** (`/contact`) - Contact information
 
-### Admin Panel
+## 🧪 Testing
 
-Access the admin panel at `/admin` to:
-
-- ✅ Add new AI tools
-- ✏️ Edit existing tools
-- 🗑️ Delete tools
-- 📁 Create categories
-- 🏷️ Remove categories
-
-### API Endpoints
-
-#### Tools
-
-- `GET /api/tools` - Get all tools
-- `GET /api/tools?category=name` - Filter tools by category
-- `GET /api/tools/search?q=keyword` - Search tools
-- `POST /api/tools` - Add a new tool
-- `PUT /api/tools/:id` - Update a tool
-- `DELETE /api/tools/:id` - Delete a tool
-
-#### Categories
-
-- `GET /api/categories` - Get all categories
-- `POST /api/categories` - Add a new category
-- `DELETE /api/categories/:id` - Delete a category
-
-## 📝 Adding Sample Data
-
-To get started quickly, you can add sample tools and categories through the admin panel at `/admin`.
-
-### Sample Categories
-
-- Image Generation
-- Video Creation
-- Text & Writing
-- Code Assistant
-- Audio & Music
-- Productivity
-- Marketing
-- Data Analysis
-
-### Sample Tool Format
-
-```json
-{
-  "name": "ChatGPT",
-  "description": "Advanced AI chatbot for conversations, writing, and problem-solving",
-  "category": "Text & Writing",
-  "logo": "https://example.com/chatgpt-logo.png",
-  "url": "https://chat.openai.com"
-}
-```
-
-## 🎨 Customization
-
-### Styling
-
-- Main styles: `public/css/style.css`
-- Admin styles: `public/css/admin.css`
-- Color scheme defined in CSS variables (`:root`)
-
-### Branding
-
-Update the following in your HTML files:
-- Website name: "AvroAI" (in navigation)
-- Subtitle: "Discover the best AI tools from around the world"
-- Footer: "© AvroAI 2025"
-
-## 🌐 Deployment
-
-### Deploy to Production
-
-1. **Set up your MongoDB database** (MongoDB Atlas recommended)
-
-2. **Update environment variables**
-
-```env
-PORT=3000
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/avroai
-```
-
-3. **Build and deploy** to your preferred platform:
-   - Heroku
-   - DigitalOcean
-   - AWS
-   - Vercel
-   - Railway
-
-### Domain Setup
-
-1. Point your domain `avroai.com` to your server
-2. Set up SSL certificate (Let's Encrypt recommended)
-3. Update any hardcoded URLs if necessary
-
-## 📊 Database Schema
-
-### Tool Model
-
-```javascript
-{
-  name: String (required),
-  description: String (required),
-  category: String (required),
-  logo: String (required),
-  url: String (required),
-  createdAt: Date (default: now)
-}
-```
-
-### Category Model
-
-```javascript
-{
-  name: String (required, unique),
-  createdAt: Date (default: now)
-}
-```
-
-## 🔒 Security Recommendations
-
-For production deployment:
-
-1. Add authentication to the admin panel
-2. Use environment variables for sensitive data
-3. Implement rate limiting
-4. Enable CORS restrictions
-5. Add input validation and sanitization
-6. Use HTTPS only
-
-## 🐛 Troubleshooting
-
-### MongoDB Connection Error
+Run the automated deployment test:
 
 ```bash
-# Check if MongoDB is running
-mongosh
-
-# If not, start the service
-brew services start mongodb-community  # macOS
-sudo systemctl start mongod            # Linux
-net start MongoDB                      # Windows
+# Open test-deployment.html in your browser
+# Click "Run All Tests"
 ```
 
-### Port Already in Use
+This will verify:
+- ✅ Frontend configuration
+- ✅ Backend API connection
+- ✅ Database connection
+- ✅ CORS configuration
 
-Change the `PORT` in your `.env` file to a different number (e.g., 3001, 8080).
+## 📚 Documentation
 
-### Dependencies Not Installing
+- **Deployment Guide:** `DEPLOYMENT-GUIDE.md`
+- **MongoDB Network Setup:** `MONGODB-NETWORK-ACCESS-GUIDE.md`
+- **Project Summary:** `PROJECT-SUMMARY.md`
+
+## 💰 Hosting Costs
+
+**Free Tier:**
+- Railway: $5 credit/month (sufficient for small apps)
+- Vercel: Free forever (personal projects)
+- MongoDB Atlas: Free tier (512MB)
+
+**Total:** $0/month for hobby use
+
+## 🔄 Updates & Auto-Deploy
+
+Both Railway and Vercel automatically deploy when you push to GitHub:
 
 ```bash
-# Clear npm cache
-npm cache clean --force
-
-# Delete node_modules and reinstall
-rm -rf node_modules package-lock.json
-npm install
+git add .
+git commit -m "Your update"
+git push
 ```
+
+## 🛠️ Built With
+
+- [Express.js](https://expressjs.com/) - Web framework
+- [MongoDB](https://www.mongodb.com/) - Database
+- [Mongoose](https://mongoosejs.com/) - ODM
+- [Railway](https://railway.app/) - Backend hosting
+- [Vercel](https://vercel.com/) - Frontend hosting
 
 ## 📄 License
 
-MIT License - feel free to use this project for personal or commercial purposes.
+MIT License - feel free to use this project for your own purposes
+
+## 👤 Author
+
+**AvroAI Team**
 
 ## 🤝 Contributing
 
-Contributions are welcome! Feel free to submit issues and pull requests.
+Contributions, issues, and feature requests are welcome!
 
-## 📧 Support
+## ⭐ Show Your Support
 
-For questions or support, contact: contact@avroai.com
-
-## 🌟 Acknowledgments
-
-- Inspired by [Aixploria](https://www.aixploria.com/en/)
-- Built with modern web technologies
-- Designed for simplicity and performance
+Give a ⭐️ if you like this project!
 
 ---
 
-**Made with ❤️ for the AI community**
+**Live Demo:** [avroai.vercel.app](https://avroai.vercel.app)
 
+**Need help?** Check `DEPLOYMENT-GUIDE.md` or open an issue.
