@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - AvroAI</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <a href="/">AvroAI</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/categories" class="active">Categories</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Browse by Category</h1>
+            <p>Explore AI tools organized by their primary use case</p>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <div id="categoriesGrid" class="categories-grid">
+                <!-- Categories will be loaded here dynamically -->
+            </div>
+
+            <div id="loadingSpinner" class="loading">
+                <div class="spinner"></div>
+                <p>Loading categories...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Selected Category Tools -->
+    <section id="categoryToolsSection" class="tools-section" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="categoryTitle"></h2>
+                <button id="clearCategoryBtn" class="clear-btn">View All Categories</button>
+            </div>
+            
+            <div id="categoryToolsGrid" class="tools-grid">
+                <!-- Category tools will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; AvroAI 2025. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/config.js"></script>
+    <script src="/js/categories.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - AvroAI</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <a href="/">AvroAI</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/categories">Categories</a></li>
+                    <li><a href="/admin" class="active">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Header -->
+    <section class="page-header admin-header">
+        <div class="container">
+            <h1>Admin Dashboard</h1>
+            <p>Manage AI tools and categories</p>
+        </div>
+    </section>
+
+    <!-- Admin Content -->
+    <section class="admin-section">
+        <div class="container">
+            <div class="admin-grid">
+                <!-- Add Tool Form -->
+                <div class="admin-card">
+                    <h2>Add New Tool</h2>
+                    <form id="addToolForm" class="admin-form">
+                        <div class="form-group">
+                            <label for="toolName">Tool Name *</label>
+                            <input type="text" id="toolName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="toolDescription">Description *</label>
+                            <textarea id="toolDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="toolCategory">Category *</label>
+                            <select id="toolCategory" required>
+                                <option value="">Select a category</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="toolLogo">Logo URL *</label>
+                            <input type="url" id="toolLogo" placeholder="https://example.com/logo.png" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="toolUrl">Website URL *</label>
+                            <input type="url" id="toolUrl" placeholder="https://example.com" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Tool</button>
+                    </form>
+                </div>
+
+                <!-- Add Category Form -->
+                <div class="admin-card">
+                    <h2>Add New Category</h2>
+                    <form id="addCategoryForm" class="admin-form">
+                        <div class="form-group">
+                            <label for="categoryName">Category Name *</label>
+                            <input type="text" id="categoryName" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Category</button>
+                    </form>
+
+                    <div class="categories-list">
+                        <h3>Existing Categories</h3>
+                        <div id="categoriesList" class="tags-list">
+                            <!-- Categories will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools Management -->
+            <div class="admin-card">
+                <h2>Manage Tools</h2>
+                <div class="search-box admin-search">
+                    <input type="text" id="adminSearchInput" placeholder="Search tools..." class="search-input">
+                </div>
+                <div id="toolsList" class="tools-list">
+                    <!-- Tools will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Edit Tool Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Tool</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <form id="editToolForm" class="admin-form">
+                <input type="hidden" id="editToolId">
+                <div class="form-group">
+                    <label for="editToolName">Tool Name *</label>
+                    <input type="text" id="editToolName" required>
+                </div>
+                <div class="form-group">
+                    <label for="editToolDescription">Description *</label>
+                    <textarea id="editToolDescription" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editToolCategory">Category *</label>
+                    <select id="editToolCategory" required>
+                        <option value="">Select a category</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editToolLogo">Logo URL *</label>
+                    <input type="url" id="editToolLogo" required>
+                </div>
+                <div class="form-group">
+                    <label for="editToolUrl">Website URL *</label>
+                    <input type="url" id="editToolUrl" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelEdit">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; AvroAI 2025. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/config.js"></script>
+    <script src="/js/admin.js"></script>
+</body>
+</html>
+

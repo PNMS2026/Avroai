@@ -1,0 +1,360 @@
+/* ===== Admin Styles ===== */
+.admin-header {
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+}
+
+.admin-section {
+    padding: 60px 0;
+    background: var(--bg-light);
+    min-height: calc(100vh - 200px);
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+.admin-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: var(--shadow-md);
+}
+
+.admin-card h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text-dark);
+}
+
+.admin-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 30px 0 16px;
+    color: var(--text-dark);
+}
+
+/* ===== Form Styles ===== */
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 12px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* ===== Buttons ===== */
+.btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+    background: var(--white);
+    color: var(--text-dark);
+    border: 2px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-danger {
+    background: #ef4444;
+    color: var(--white);
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}
+
+.btn-edit {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 8px 16px;
+    font-size: 12px;
+}
+
+/* ===== Categories List ===== */
+.categories-list {
+    margin-top: 30px;
+}
+
+.tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.category-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #ede9fe;
+    color: var(--secondary-color);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-btn:hover {
+    color: #dc2626;
+}
+
+/* ===== Tools List ===== */
+.admin-search {
+    margin-bottom: 20px;
+}
+
+.tools-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 600px;
+    overflow-y: auto;
+    margin-top: 20px;
+}
+
+.tool-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: var(--bg-light);
+    border-radius: 12px;
+    transition: all 0.3s;
+}
+
+.tool-item:hover {
+    background: #f3f4f6;
+}
+
+.tool-item-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: var(--white);
+}
+
+.tool-item-info {
+    flex: 1;
+}
+
+.tool-item-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+.tool-item-category {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.tool-item-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* ===== Modal ===== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--white);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-xl);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 30px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.modal-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: var(--text-light);
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-modal:hover {
+    color: var(--text-dark);
+}
+
+.modal-content .admin-form {
+    padding: 30px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.modal-actions .btn {
+    flex: 1;
+}
+
+/* ===== Toast Notification ===== */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--text-dark);
+    color: var(--white);
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-xl);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s;
+    z-index: 2000;
+}
+
+.toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toast.success {
+    background: #10b981;
+}
+
+.toast.error {
+    background: #ef4444;
+}
+
+/* ===== Responsive Admin ===== */
+@media (max-width: 768px) {
+    .admin-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+
+    .toast {
+        right: 20px;
+        left: 20px;
+        bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-card {
+        padding: 20px;
+    }
+
+    .tool-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .tool-item-actions {
+        width: 100%;
+    }
+
+    .tool-item-actions button {
+        flex: 1;
+    }
+}
+

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AvroAI - Discover the Best AI Tools</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <a href="/">AvroAI</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="/" class="active">Home</a></li>
+                    <li><a href="/categories">Categories</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">AvroAI</h1>
+            <p class="hero-subtitle">Discover the best AI tools from around the world</p>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search for AI tools..." class="search-input">
+                    <button class="search-btn" id="searchBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+                <select id="categoryFilter" class="category-filter">
+                    <option value="">All Categories</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="tools-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="sectionTitle">All AI Tools</h2>
+                <p id="toolCount" class="tool-count"></p>
+            </div>
+            
+            <div id="toolsGrid" class="tools-grid">
+                <!-- Tools will be loaded here dynamically -->
+            </div>
+
+            <div id="loadingSpinner" class="loading">
+                <div class="spinner"></div>
+                <p>Loading tools...</p>
+            </div>
+
+            <div id="noResults" class="no-results" style="display: none;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <h3>No tools found</h3>
+                <p>Try adjusting your search or filter</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; AvroAI 2025. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/config.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
+
