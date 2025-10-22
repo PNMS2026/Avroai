@@ -18,6 +18,12 @@ const API_CONFIG = {
     }
 };
 
-// Export for use in other files
-const API_URL = API_CONFIG.getBaseURL();
+// Export for use in other files (global for browser compatibility)
+window.API_URL = API_CONFIG.getBaseURL();
+const API_URL = window.API_URL;
+
+// Debug: Log the API URL being used
+console.log('🔧 API Configuration:');
+console.log('   Environment:', window.location.hostname === 'localhost' ? 'LOCAL' : 'PRODUCTION');
+console.log('   API URL:', window.API_URL);
 

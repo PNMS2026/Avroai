@@ -1,5 +1,6 @@
-// API Base URL
-const API_URL = '/api';
+// API Base URL - uses config.js for environment detection
+// Make sure config.js is loaded before this file in HTML
+const API_URL = typeof window.API_URL !== 'undefined' ? window.API_URL : '/api';
 
 // DOM Elements
 const categoriesGrid = document.getElementById('categoriesGrid');
